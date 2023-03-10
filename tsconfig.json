@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es2022",
+      "module": "commonjs",
+      "moduleResolution": "nodenext",
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "removeComments": true,
+      "noImplicitReturns": true,
+      "skipLibCheck": true                       
+    }
+  }
+  

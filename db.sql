@@ -6,5 +6,6 @@ CREATE TABLE users (
 CREATE TABLE shop (
   id text primary key,
   price int8,
+  name text,
   run text
 );

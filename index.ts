@@ -50,7 +50,7 @@ client.on("messageCreate", async (message)=>{
     let cmd = args.shift();
     let x: any = commands.get(cmd);
     if(x != undefined){
-        x.main.run(client, message, args);
+        x.main.run(client, message, args, commands);
     };
 })
 

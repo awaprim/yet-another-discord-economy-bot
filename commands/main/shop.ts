@@ -10,7 +10,7 @@ const main: any = {
     shopdata?.forEach(e=>{
       stufftodisplayonshop += `${e.id}: **${e.name}** - ${e.price} Coins.\n`
     })
-
+    if(stufftodisplayonshop=="") stufftodisplayonshop = "Empty";
 
     const embed = new EmbedBuilder()
       .setColor("#0099ff")

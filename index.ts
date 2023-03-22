@@ -23,7 +23,7 @@ const client = new Client({
   ] // for now all of dat shit but one day i might remove useless ones
 });
 const commands = new Collection();
-
+const cooldowns = new Collection();
 
 fs.readdirSync(__dirname + "/commands/").forEach(dir=>{
     fs.readdirSync(__dirname+"/commands/"+dir).filter((e)=>e.endsWith(".ts")).forEach(file=>{
@@ -50,7 +50,13 @@ client.on("messageCreate", async (message)=>{
     let cmd = args.shift();
     let x: any = commands.get(cmd);
     if(x != undefined){
-        x.main.run(client, message, args, commands);
+      if((Number(cooldowns.get(message.author.id+`|${x.main.name[0]}`)) || 0) > Date.now()) {
+        message.reply(`You need to wait \`${Math.ceil(((Number(cooldowns.get(message.author.id+`|${x.main.name[0]}`)) || 0)-Date.now())/1000)} second\` before using this command.`);
+        return;
+      };
+      cooldowns.set(message.author.id+`|${x.main.name[0]}`, (Date.now())+(x.main.cooldown||0)*1000)
+      x.main.run(client, message, args, commands);
+
     };
 })
 

@@ -3,6 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 const supabase = createClient(process.env["SupabaseURL"] || "", process.env["supabaseApiKey"] || "");
 const main: any = {
   name: ["shop"],
+  cooldown: 4,
   run: async (client: any, message: any, args: any) => {
     
     let { data: shopdata, error } = await supabase.from('shop').select('id,name,price');

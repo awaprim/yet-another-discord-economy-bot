@@ -3,6 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 const supabase = createClient(process.env["SupabaseURL"] || "", process.env["supabaseApiKey"] || "");
 const main: any = {
   name: ["buy"],
+  cooldown: 5,
   run: async (client: any, message: any, args: any, commands: any) => {
     let { data: shopdata } = await supabase.from('shop').select('price,run').eq('id', args[0])
     if(shopdata?.length==0) return message.reply("The item with that id does not exist!")
